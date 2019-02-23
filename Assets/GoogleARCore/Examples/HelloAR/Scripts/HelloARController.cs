@@ -79,14 +79,18 @@ namespace GoogleARCore.Examples.HelloAR
         /// </summary>
         private bool m_IsQuitting = false;
 
-        private List<Data> allCoordinates = new List<Data>();
+        //private List<Data> allCoordinates = new List<Data>();
         private bool resume = true;
 
         private List<Vector3> storePos = new List<Vector3>();
 
         public Text questions;
 
+        List<QandA> questionAnswer = new List<QandA>();
+        private bool instantiateQuestions = true;
+
         //bool showQuestions = false;
+        //QuestionHandler();
 
         /// <summary>
         /// The Unity Update() method.
@@ -94,9 +98,17 @@ namespace GoogleARCore.Examples.HelloAR
         public void Update()
         {
             _UpdateApplicationLifecycle();
+            
+            //if(instantiateQuestions)
+            //{
+            //    QuestionHandler();
+           // }
+            //MathsQuestions.SetActive(false);
+
+            //QuestionHandler();
 
             //bool showQuestions;
-           // MathsQuestions.SetActive(showQuestions);
+            // MathsQuestions.SetActive(showQuestions);
 
             // Hide snackbar when currently tracking at least one plane.
             Session.GetTrackables<DetectedPlane>(m_AllPlanes);
@@ -118,6 +130,7 @@ namespace GoogleARCore.Examples.HelloAR
             {
                 return;
             }
+            //QuestionHandler();
             //touch.poisiton
             //Get this touch position then compare to the Hit.pose or the Hit position, or maybe even the anchor or model position, to then spring a text box.        
 
@@ -161,7 +174,8 @@ namespace GoogleARCore.Examples.HelloAR
                             //MathsQuestions.SetActive(showQuestions);
                             if (showQuestions)
                             {
-                                ShowQuestions(showQuestions);
+                                //ShowQuestions(showQuestions);
+                                QuestionHandler(showQuestions);
                             }
                         }
                         //else
@@ -297,8 +311,21 @@ namespace GoogleARCore.Examples.HelloAR
         private void ShowQuestions(bool showQuestions)
         {
             //bool showQuestions = true;
-            questions.text = "add question here...";
+            //QandA questionOne = new QandA(1, "What is 1 + 1?", 2, false);
+            //questionAnswer.Add(questionOne);
+            //QuestionHandler();
+            questions.text = questionAnswer[1].GetQuestionNo() + ". " + questionAnswer[1].GetQuestion();
             MathsQuestions.SetActive(showQuestions);
+        }
+
+        private void QuestionHandler(bool showQuestions)
+        {
+            //List<QandA> questions = new List<QandA>();
+            QandA questionOne = new QandA(1, "What is 1 + 1?", 2, false);
+            questionAnswer.Add(questionOne);
+            ShowQuestions(showQuestions);
+            //instantiateQuestions = false;
+            //Update();
         }
     }
 }

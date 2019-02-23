@@ -16,7 +16,7 @@ namespace GoogleARCore.Examples.HelloAR
 
         private bool correct;
 
-        QandA(int Number, String Question, double Answer, bool Correct)
+        public QandA(int Number, String Question, double Answer, bool Correct)
         {
             questionNo = Number;
             question = Question;
@@ -24,42 +24,42 @@ namespace GoogleARCore.Examples.HelloAR
             correct = Correct;
         }
 
-        public void setQuestionNo (int Number)
+        public void SetQuestionNo (int Number)
         {
             questionNo = Number;
         }
 
-        public void setQuestion (String Question)
+        public void SetQuestion (String Question)
         {
             question = Question;
         }
 
-        public void setAnswer (double Answer)
+        public void SetAnswer (double Answer)
         {
             answer = Answer;
         }
 
-        public void setCorrect (bool Correct)
+        public void SetCorrect (bool Correct)
         {
             correct = Correct;
         }
 
-        public int getQuestionNo()
+        public int GetQuestionNo()
         {
             return (questionNo);
         }
 
-        public String getQuestion()
+        public String GetQuestion()
         {
             return (question);
         }
 
-        public double getAnswer()
+        public double GetAnswer()
         {
             return (answer);
         }
 
-        public bool getCorrect()
+        public bool GetCorrect()
         {
             return (correct);
         }
