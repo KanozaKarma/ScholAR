@@ -73,6 +73,7 @@
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\TextureReader.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\TextureReaderApi.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\Data.cs" />
+    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\GetSubmittedAnswer.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\HelloARController.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\QandA.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\QuestionHandler.cs" />

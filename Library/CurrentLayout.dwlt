@@ -44,10 +44,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 679, y: 498}
-  m_MaxSize: {x: 14002, y: 14048}
+  m_MinSize: {x: 683, y: 498}
+  m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 73
+  controlID: 117
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 266
     height: 668
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 224}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -216,10 +216,10 @@ MonoBehaviour:
     y: 0
     width: 1508
     height: 947
-  m_MinSize: {x: 404, y: 498}
+  m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 28
+  controlID: 118
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -241,10 +241,10 @@ MonoBehaviour:
     y: 0
     width: 1508
     height: 668
-  m_MinSize: {x: 404, y: 224}
-  m_MaxSize: {x: 8004, y: 4024}
+  m_MinSize: {x: 406, y: 224}
+  m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 29
+  controlID: 119
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -264,8 +264,8 @@ MonoBehaviour:
     y: 0
     width: 1242
     height: 668
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 224}
+  m_MaxSize: {x: 4004, y: 4024}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -370,19 +370,19 @@ MonoBehaviour:
     m_Folders:
     - Assets/GoogleARCore/Examples/HelloAR/Scripts
   m_ViewMode: 1
-  m_StartGridSize: 64
+  m_StartGridSize: 87
   m_LastFolders:
   - Assets/GoogleARCore/Examples/HelloAR/Scripts
-  m_LastFoldersGridSize: -1
+  m_LastFoldersGridSize: 87
   m_LastProjectPath: C:\Users\Ewaen Isoken\Documents\Unity Projects\ARCore Getting
     Started
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 187}
-    m_SelectedIDs: 402a0000
-    m_LastClickedID: 10816
-    m_ExpandedIDs: 0000000072290000d82a0000ea2a0000442b0000b42b000000ca9a3b
+    scrollPos: {x: 0, y: 170}
+    m_SelectedIDs: 442a0000
+    m_LastClickedID: 10820
+    m_ExpandedIDs: 0000000076290000dc2a0000ee2a0000482b0000b82b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -410,7 +410,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000072290000d82a0000ea2a0000442b0000b42b0000
+    m_ExpandedIDs: 0000000076290000dc2a0000ee2a0000482b0000b82b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -463,7 +463,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 64
+    m_GridSize: 87
   m_DirectoriesAreaWidth: 233
 --- !u!114 &15
 MonoBehaviour:
@@ -529,9 +529,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: fe3f0000
-      m_LastClickedID: 16382
-      m_ExpandedIDs: 64e1ffff82e1ffff9ee1ffffa8e1ffff5ae4ffff78e4ffff94e4ffff9ee4ffffbcf1ffffdaf1fffff6f1ffff76f4ffff6ef5ffff8cf5ffffa8f5ffffb2f5ffff72f6ffff90f6ffffacf6ffff2cf9ffffd4fbffff482e0000762e0000cc31000092350000cc3500004e38000076380000b0380000003900003c3c0000763c0000fe3f00003840000088400000
+      m_SelectedIDs: d4390000
+      m_LastClickedID: 14804
+      m_ExpandedIDs: 94f0ffffb2f0ffffcef0ffffd8f0ffffaaf1ffffc8f1ffffe4f1ffffeef1ffff9ef2ffffbcf2ffffd8f2ffff58f5ffffd4fbffff4a2e0000782e0000c82e0000cc3200008e350000b6350000f03500005839000080390000ba390000de390000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -587,9 +587,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 654.3831, y: 301.52838, z: -4.5912704}
+    m_Target: {x: 671.83307, y: 313.163, z: -4.625}
     speed: 2
-    m_Value: {x: 654.3831, y: 301.52838, z: -4.5912704}
+    m_Value: {x: 671.83307, y: 313.163, z: -4.625}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0

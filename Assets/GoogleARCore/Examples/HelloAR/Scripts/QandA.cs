@@ -10,13 +10,13 @@ namespace GoogleARCore.Examples.HelloAR
     {
         private int questionNo;
 
-        private String question;
+        private string question;
 
-        private double answer;
+        private string answer;
 
         private bool correct;
 
-        public QandA(int Number, String Question, double Answer, bool Correct)
+        public QandA(int Number, string Question, string Answer, bool Correct)
         {
             questionNo = Number;
             question = Question;
@@ -29,12 +29,12 @@ namespace GoogleARCore.Examples.HelloAR
             questionNo = Number;
         }
 
-        public void SetQuestion (String Question)
+        public void SetQuestion (string Question)
         {
             question = Question;
         }
 
-        public void SetAnswer (double Answer)
+        public void SetAnswer (string Answer)
         {
             answer = Answer;
         }
@@ -49,12 +49,12 @@ namespace GoogleARCore.Examples.HelloAR
             return (questionNo);
         }
 
-        public String GetQuestion()
+        public string GetQuestion()
         {
             return (question);
         }
 
-        public double GetAnswer()
+        public string GetAnswer()
         {
             return (answer);
         }

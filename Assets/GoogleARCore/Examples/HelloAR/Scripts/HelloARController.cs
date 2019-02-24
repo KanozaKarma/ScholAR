@@ -63,6 +63,12 @@ namespace GoogleARCore.Examples.HelloAR
 
         public GameObject MathsQuestions;
 
+        public Button submitButton;
+        public Text buttonText;
+
+        public InputField answer;
+
+        public Text questions;
         /// <summary>
         /// The rotation in degrees need to apply to model when the Andy model is placed.
         /// </summary>
@@ -84,13 +90,12 @@ namespace GoogleARCore.Examples.HelloAR
 
         private List<Vector3> storePos = new List<Vector3>();
 
-        public Text questions;
-
         List<QandA> questionAnswer = new List<QandA>();
-        private bool instantiateQuestions = true;
+        //private bool instantiateQuestions = true;
 
-        //bool showQuestions = false;
-        //QuestionHandler();
+        private int counter = 0;
+        private int questionCounter;
+
 
         /// <summary>
         /// The Unity Update() method.
@@ -98,17 +103,6 @@ namespace GoogleARCore.Examples.HelloAR
         public void Update()
         {
             _UpdateApplicationLifecycle();
-            
-            //if(instantiateQuestions)
-            //{
-            //    QuestionHandler();
-           // }
-            //MathsQuestions.SetActive(false);
-
-            //QuestionHandler();
-
-            //bool showQuestions;
-            // MathsQuestions.SetActive(showQuestions);
 
             // Hide snackbar when currently tracking at least one plane.
             Session.GetTrackables<DetectedPlane>(m_AllPlanes);
@@ -121,7 +115,7 @@ namespace GoogleARCore.Examples.HelloAR
                     break;
                 }
             }
-
+            
             SearchingForPlaneUI.SetActive(showSearchingUI);
 
             // If the player has not touched the screen, we are done with this update.
@@ -130,9 +124,8 @@ namespace GoogleARCore.Examples.HelloAR
             {
                 return;
             }
-            //QuestionHandler();
-            //touch.poisiton
-            //Get this touch position then compare to the Hit.pose or the Hit position, or maybe even the anchor or model position, to then spring a text box.        
+
+            // Get this touch position then compare to the Hit.pose or the Hit position, or maybe even the anchor or model position, to then spring a text box.        
 
             // Raycast against the location the player touched to search for planes.
             TrackableHit hit;
@@ -151,38 +144,22 @@ namespace GoogleARCore.Examples.HelloAR
                 }
                 else
                 {
-                    /*for (int i = 0; i < m_AllPlanes.Count; i++)
-                    {
-                        if (hit.Pose.position.x == allCoordinates[i].GetX())
-                        {
-                            resume = false;
-                            return;
-                        }
-                    }*/
+
                     bool showQuestions = false;
-                    //resume = false;
+
                     float distance = 0.0f;
                     for (int i = 0; i < storePos.Count; i++)
                     {
-                        //if (hit.Pose.position == storePos[i])
                         distance = (hit.Pose.position - storePos[i]).magnitude;
                         if(distance < 0.2f)
                         {
                             resume = false;
                             showQuestions = true;
-                            //Instantiate()
-                            //MathsQuestions.SetActive(showQuestions);
                             if (showQuestions)
                             {
-                                //ShowQuestions(showQuestions);
                                 QuestionHandler(showQuestions);
                             }
                         }
-                        //else
-                       // {
-                            //return;
-                        //    resume = true;
-                       // }
                     }
 
                     if (resume)
@@ -198,7 +175,6 @@ namespace GoogleARCore.Examples.HelloAR
                         {
                             prefab = AndyPlanePrefab;
                         }
-                        //hit.Trackable.
                         // Instantiate Andy model at the hit pose.
                         var andyObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
 
@@ -209,9 +185,6 @@ namespace GoogleARCore.Examples.HelloAR
                         // world evolves.
                         var anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
-
-                        //it's possible that the phone touch position may not work. Use worldspace anchor position, if touched again cancel model placement in a range and compare it
-
                         // Make Andy model a child of the anchor.
                         andyObject.transform.parent = anchor.transform;
 
@@ -219,19 +192,6 @@ namespace GoogleARCore.Examples.HelloAR
 
                         //andyObject.();
                         storePos.Add(hit.Pose.position);
-                        //Touch touch2;
-                        //if (!(Input.touchCount < 1 || (touch2 = Input.GetTouch(0)).phase != TouchPhase.Began))
-                       // {
-
-                            //Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                            //RaycastHit hit2;
-
-                            //if (Physics.Raycast(ray, out hit2, 100))
-                           // {
-                               // Debug.Log(hit2.transform.gameObject + " Object is hit");
-                            //}
-
-                        //}
                     }
                 }
             }
@@ -310,22 +270,34 @@ namespace GoogleARCore.Examples.HelloAR
 
         private void ShowQuestions(bool showQuestions)
         {
-            //bool showQuestions = true;
-            //QandA questionOne = new QandA(1, "What is 1 + 1?", 2, false);
-            //questionAnswer.Add(questionOne);
-            //QuestionHandler();
             questions.text = questionAnswer[1].GetQuestionNo() + ". " + questionAnswer[1].GetQuestion();
+
             MathsQuestions.SetActive(showQuestions);
+            while (answer.text == null)
+            {
+                submitButton.enabled = false;
+            }
+            submitButton.onClick.AddListener(ReadInput);
         }
 
         private void QuestionHandler(bool showQuestions)
         {
-            //List<QandA> questions = new List<QandA>();
-            QandA questionOne = new QandA(1, "What is 1 + 1?", 2, false);
+            QandA questionOne = new QandA(1, "What is 1 + 1?", "2", false);
             questionAnswer.Add(questionOne);
             ShowQuestions(showQuestions);
-            //instantiateQuestions = false;
-            //Update();
+        }
+
+        private void ReadInput()
+        {
+            string currentAnswer = answer.text;
+            if (currentAnswer == questionAnswer[1].GetAnswer())
+            {
+                buttonText.text = "Correct Answer!";
+            }
+            else
+            {
+                buttonText.text = "Wrong Answer, try again bruh";
+            }
         }
     }
 }
