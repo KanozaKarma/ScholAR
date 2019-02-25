@@ -21,6 +21,7 @@
 namespace GoogleARCore.Examples.HelloAR
 {
     using System.Collections.Generic;
+    using System.Collections;
     using GoogleARCore;
     using GoogleARCore.Examples.Common;
     using UnityEngine;
@@ -69,6 +70,10 @@ namespace GoogleARCore.Examples.HelloAR
         public InputField answer;
 
         public Text questions;
+
+        public Text scoreSystem;
+        int score;
+
         /// <summary>
         /// The rotation in degrees need to apply to model when the Andy model is placed.
         /// </summary>
@@ -91,10 +96,12 @@ namespace GoogleARCore.Examples.HelloAR
         private List<Vector3> storePos = new List<Vector3>();
 
         List<QandA> questionAnswer = new List<QandA>();
-        //private bool instantiateQuestions = true;
+        private bool instantiateQuestions = true;
 
         private int counter = 0;
-        private int questionCounter;
+        private int questionCounter = 0;
+
+        private bool startQuestions = false;
 
 
         /// <summary>
@@ -103,6 +110,11 @@ namespace GoogleARCore.Examples.HelloAR
         public void Update()
         {
             _UpdateApplicationLifecycle();
+
+            //if (instantiateQuestions)
+           // {
+             //   QuestionHandler(instantiateQuestions);
+           // }
 
             // Hide snackbar when currently tracking at least one plane.
             Session.GetTrackables<DetectedPlane>(m_AllPlanes);
@@ -147,24 +159,35 @@ namespace GoogleARCore.Examples.HelloAR
 
                     bool showQuestions = false;
 
-                    float distance = 0.0f;
-                    for (int i = 0; i < storePos.Count; i++)
-                    {
-                        distance = (hit.Pose.position - storePos[i]).magnitude;
-                        if(distance < 0.2f)
+                    //if (counter >= questionAnswer.Count)
+                   // {
+                   //     startQuestions = true;
+                   // }
+
+                   // if (startQuestions)
+                   // {
+                        float distance = 0.0f;
+                        for (int i = 0; i < storePos.Count; i++)
                         {
-                            resume = false;
-                            showQuestions = true;
-                            if (showQuestions)
+                            distance = (hit.Pose.position - storePos[i]).magnitude;
+                            if (distance < 0.2f)
                             {
-                                QuestionHandler(showQuestions);
+                                resume = false;
+                                showQuestions = true;
+                                if (showQuestions)
+                                {
+                                    QuestionHandler(showQuestions);
+                                    //ShowQuestions(showQuestions);
+                                }
                             }
                         }
-                    }
+                    //}
 
-                    if (resume)
+                    //MathsQuestions.SetActive(false);
+
+                    if (resume /*&& counter < questionAnswer.Count*/)
                     {
-                        showQuestions = false;
+                        //showQuestions = false;
                         // Choose the Andy model for the Trackable that got hit.
                         GameObject prefab;
                         if (hit.Trackable is FeaturePoint)
@@ -192,6 +215,8 @@ namespace GoogleARCore.Examples.HelloAR
 
                         //andyObject.();
                         storePos.Add(hit.Pose.position);
+
+                        //counter++;
                     }
                 }
             }
@@ -273,10 +298,10 @@ namespace GoogleARCore.Examples.HelloAR
             questions.text = questionAnswer[1].GetQuestionNo() + ". " + questionAnswer[1].GetQuestion();
 
             MathsQuestions.SetActive(showQuestions);
-            while (answer.text == null)
-            {
-                submitButton.enabled = false;
-            }
+            //while (answer.text == null)
+            //{
+            //    submitButton.enabled = false;
+            //}
             submitButton.onClick.AddListener(ReadInput);
         }
 
@@ -284,7 +309,12 @@ namespace GoogleARCore.Examples.HelloAR
         {
             QandA questionOne = new QandA(1, "What is 1 + 1?", "2", false);
             questionAnswer.Add(questionOne);
+
+            //instantiateQuestions = false;
             ShowQuestions(showQuestions);
+            questionCounter = questionAnswer.Count;
+            //return instantiateQuestions;
+            //Update();
         }
 
         private void ReadInput()
@@ -293,11 +323,26 @@ namespace GoogleARCore.Examples.HelloAR
             if (currentAnswer == questionAnswer[1].GetAnswer())
             {
                 buttonText.text = "Correct Answer!";
+                //Invoke("CloseCanvas", 3f);
+                StartCoroutine(CloseCanvas());
             }
             else
             {
                 buttonText.text = "Wrong Answer, try again bruh";
             }
+            //yield return new WaitForSeconds(6);
+        }
+
+        //private void CloseCanvas(bool showQuestions)
+        IEnumerator CloseCanvas()
+        {
+            submitButton.enabled = false;
+            yield return new WaitForSeconds(3f);
+            score = score + 100;
+            scoreSystem.text = "Score: " + score;
+            MathsQuestions.SetActive(false);
+            resume = true;
+            Update();
         }
     }
 }
