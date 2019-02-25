@@ -74,6 +74,7 @@ namespace GoogleARCore.Examples.HelloAR
         public Text scoreSystem;
         int score;
 
+        public Text NumberOfQuestions;
         /// <summary>
         /// The rotation in degrees need to apply to model when the Andy model is placed.
         /// </summary>
@@ -176,6 +177,7 @@ namespace GoogleARCore.Examples.HelloAR
                                 showQuestions = true;
                                 if (showQuestions)
                                 {
+                                    submitButton.enabled = true;
                                     QuestionHandler(showQuestions);
                                     //ShowQuestions(showQuestions);
                                 }
@@ -295,42 +297,52 @@ namespace GoogleARCore.Examples.HelloAR
 
         private void ShowQuestions(bool showQuestions)
         {
-            questions.text = questionAnswer[1].GetQuestionNo() + ". " + questionAnswer[1].GetQuestion();
+            questions.text = questionAnswer[counter].GetQuestionNo() + ". " + questionAnswer[counter].GetQuestion();
+
+            NumberOfQuestions.text = "There are " + questionAnswer.Count + " number of questions left!";
 
             MathsQuestions.SetActive(showQuestions);
-            //while (answer.text == null)
-            //{
-            //    submitButton.enabled = false;
-            //}
+
             submitButton.onClick.AddListener(ReadInput);
         }
 
         private void QuestionHandler(bool showQuestions)
         {
-            QandA questionOne = new QandA(1, "What is 1 + 1?", "2", false);
-            questionAnswer.Add(questionOne);
+            if (instantiateQuestions == true)
+            {
+                QandA questionOne = new QandA(1, "What is 1 + 1?", "2", false);
+                QandA questionTwo = new QandA(2, "What is 3 × 4?", "12", false);
+                QandA questionThree = new QandA(3, "What is 6 + 2?", "8", false);
+                QandA questionFour = new QandA(4, "What is 12 - 3 1?", "9", false);
+                QandA questionFive = new QandA(5, "What is 5 + 2?", "7", false);
+                questionAnswer.Add(questionOne);
+                questionAnswer.Add(questionTwo);
+                questionAnswer.Add(questionThree);
+                questionAnswer.Add(questionFour);
+                questionAnswer.Add(questionFive);
 
-            //instantiateQuestions = false;
+                instantiateQuestions = false;
+            }
+            
             ShowQuestions(showQuestions);
             questionCounter = questionAnswer.Count;
-            //return instantiateQuestions;
-            //Update();
         }
 
         private void ReadInput()
         {
             string currentAnswer = answer.text;
-            if (currentAnswer == questionAnswer[1].GetAnswer())
+            if (currentAnswer == questionAnswer[counter].GetAnswer())
             {
                 buttonText.text = "Correct Answer!";
                 //Invoke("CloseCanvas", 3f);
+                counter++;
+                questionCounter--;
                 StartCoroutine(CloseCanvas());
             }
             else
             {
                 buttonText.text = "Wrong Answer, try again bruh";
             }
-            //yield return new WaitForSeconds(6);
         }
 
         //private void CloseCanvas(bool showQuestions)
@@ -342,6 +354,7 @@ namespace GoogleARCore.Examples.HelloAR
             scoreSystem.text = "Score: " + score;
             MathsQuestions.SetActive(false);
             resume = true;
+            NumberOfQuestions.text = "There are " + questionAnswer.Count + "number of questions left!";
             Update();
         }
     }
