@@ -104,7 +104,6 @@ namespace GoogleARCore.Examples.HelloAR
 
         private bool startQuestions = false;
 
-
         /// <summary>
         /// The Unity Update() method.
         /// </summary>
@@ -334,7 +333,6 @@ namespace GoogleARCore.Examples.HelloAR
             if (currentAnswer == questionAnswer[counter].GetAnswer())
             {
                 buttonText.text = "Correct Answer!";
-                //Invoke("CloseCanvas", 3f);
                 counter++;
                 questionCounter--;
                 StartCoroutine(CloseCanvas());

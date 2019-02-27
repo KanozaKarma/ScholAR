@@ -1,4 +1,7 @@
 sceneSetups:
+- path: Assets/GoogleARCore/Examples/HelloAR/Scenes/MainMenu.unity
+  isLoaded: 1
+  isActive: 0
 - path: Assets/GoogleARCore/Examples/HelloAR/Scenes/HelloAR.unity
   isLoaded: 1
   isActive: 1
