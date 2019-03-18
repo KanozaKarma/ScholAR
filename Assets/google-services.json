@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "981572946069",
+    "firebase_url": "https://scholar-ac37c.firebaseio.com",
+    "project_id": "scholar-ac37c",
+    "storage_bucket": "scholar-ac37c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981572946069:android:b4d12eaa847885ae",
+        "android_client_info": {
+          "package_name": "com.ewaenisoken.scholar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981572946069-al3gs13rrtj48silbiohsnubof1udkd0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbhw8EfMQpiOuq5GCln5t626UKeREGtms"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
