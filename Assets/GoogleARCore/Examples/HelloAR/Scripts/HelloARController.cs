@@ -298,7 +298,7 @@ namespace GoogleARCore.Examples.HelloAR
         {
             questions.text = questionAnswer[counter].GetQuestionNo() + ". " + questionAnswer[counter].GetQuestion();
 
-            NumberOfQuestions.text = "There are " + questionAnswer.Count + " number of questions left!";
+            NumberOfQuestions.text = "There are " + questionCounter + " number of questions left!";
 
             MathsQuestions.SetActive(showQuestions);
 
@@ -322,9 +322,10 @@ namespace GoogleARCore.Examples.HelloAR
 
                 instantiateQuestions = false;
             }
-            
-            ShowQuestions(showQuestions);
+
             questionCounter = questionAnswer.Count;
+            ShowQuestions(showQuestions);
+            
         }
 
         private void ReadInput()

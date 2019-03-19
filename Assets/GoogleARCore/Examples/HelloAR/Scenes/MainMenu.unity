@@ -384,13 +384,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bceed5e02c08974cbbd19c9483bead9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SignUpButton: {fileID: 629159655}
+  SignUpButton: {fileID: 1818843474}
+  RegisterButton: {fileID: 629159655}
   LogInUsername: {fileID: 0}
   LogInPassword: {fileID: 0}
   SignUpUsername: {fileID: 967186251}
   SignUpPassword: {fileID: 146234489}
   ConfirmPassword: {fileID: 180465195}
   SignUpEmail: {fileID: 692823353}
+  MainMenu: {fileID: 54790797}
+  SignUpMenu: {fileID: 2126863075}
 --- !u!4 &140701376
 Transform:
   m_ObjectHideFlags: 0
@@ -1175,7 +1178,7 @@ GameObject:
   - component: {fileID: 629159656}
   - component: {fileID: 629159655}
   m_Layer: 5
-  m_Name: Sign Up Button
+  m_Name: Register Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3167,7 +3170,7 @@ GameObject:
   - component: {fileID: 1818843475}
   - component: {fileID: 1818843474}
   m_Layer: 5
-  m_Name: Sign UpButton
+  m_Name: Sign Up Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
