@@ -10,12 +10,19 @@ namespace GoogleARCore.Examples.HelloAR
         public string Username;
         public string Password;
         public string Email;
+        public string userId;
 
-        public User(string name, string pass, string email)
+        public User(string userid, string name, string pass, string email)
         {
-            Username = name;
-            Password = pass;
-            Email = email;
+            this.userId = userid;
+            this.Username = name;
+            this.Password = pass;
+            this.Email = email;
+        }
+
+        public void SetUserId(string userid)
+        {
+            this.userId = userid;
         }
 
         public void SetUsername(string name)

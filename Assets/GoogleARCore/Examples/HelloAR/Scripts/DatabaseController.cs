@@ -12,6 +12,8 @@ namespace GoogleARCore.Examples.HelloAR
     {
         public Button SignUpButton;
         public Button RegisterButton;
+        public Button LogInButton;
+        public Button ConfirmLogInButton;
         //public Text Username;
         //public Text Password;
         public InputField LogInUsername;
@@ -24,6 +26,7 @@ namespace GoogleARCore.Examples.HelloAR
 
         public GameObject MainMenu;
         public GameObject SignUpMenu;
+        public GameObject LogInMenu;
 
         private bool m_IsQuitting = false;
 
@@ -35,11 +38,12 @@ namespace GoogleARCore.Examples.HelloAR
 
             SignUpButton.onClick.AddListener(SignUpHandler);
             //FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
+            LogInButton.onClick.AddListener(LogInHandler);
         }
 
         public void TakeInfo()
         {
-            SignUpButton.onClick.AddListener(SignUpHandler);
+            LogInButton.onClick.AddListener(LogInHandler);
         }
 
         public void SignUpHandler()
@@ -51,31 +55,44 @@ namespace GoogleARCore.Examples.HelloAR
 
         }
 
+        private void LogInHandler()
+        {
+            MainMenu.SetActive(false);
+            LogInMenu.SetActive(true);
+
+            ConfirmLogInButton.onClick.AddListener(CheckLogIn);
+        }
+
         public void CheckSignUp()
         {
             string Username = SignUpUsername.text;
             string Password = SignUpPassword.text;
             string confirmPassword = ConfirmPassword.text;
             string email = SignUpEmail.text;
+            string userid = "";
 
             if (Username.Equals(null))
             {
                 _ShowAndroidToastMessage("Please Enter a Username");
+                SignUpHandler();
             }
 
             if (Password.Equals(null))
             {
                 _ShowAndroidToastMessage("Please Enter a Password");
+                SignUpHandler();
             }
 
             if (email.Equals(null))
             {
                 _ShowAndroidToastMessage("Please Enter an Email");
+                SignUpHandler();
             }
 
             if(!email.Contains("@"))
             {
                 _ShowAndroidToastMessage("Please enter a valid email");
+                SignUpHandler();
             }
 
             if (!Password.Equals(confirmPassword))
@@ -85,24 +102,37 @@ namespace GoogleARCore.Examples.HelloAR
             }
             else
             {
-                User user = new User(Username, Password, email);
+                User user = new User(Username, Password, email, userid);
                 //FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
                 //DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
 
-                writeNewUser(user);
+                WriteNewUser(user);
             }
         }
 
-        private void writeNewUser(User user)
+        public void CheckLogIn()
         {
+
+        }
+
+        private void WriteNewUser(User user)
+        {
+            //Dictionary<string, Object> dict = new Dictionary<string, Object>();
             FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
             DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-            string json = JsonUtility.ToJson(user);
+            //string json = JsonUtility.ToJson(user);
 
             //reference.Child("Users").Push();
             string key = reference.Child("Users").Push().Key;
+            user.SetUserId(key);
+            string json = JsonUtility.ToJson(user);
             reference.Child("Users").Child(key).SetRawJsonValueAsync(json);
-            reference.Child("Users").Child(key).SetValueAsync(key);
+            //reference.Child("Users").Child(key).SetValueAsync();
+
+            _ShowAndroidToastMessage("Sign Up successful! Please log-in with your new details");
+            SignUpMenu.SetActive(false);
+            MainMenu.SetActive(true);
+            Update();
         }
 
         private void _UpdateApplicationLifecycle()
