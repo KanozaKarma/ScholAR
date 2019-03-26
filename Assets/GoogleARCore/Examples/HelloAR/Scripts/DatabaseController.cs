@@ -12,10 +12,10 @@ namespace GoogleARCore.Examples.HelloAR
     {
         public Button SignUpButton;
         public Button RegisterButton;
+
         public Button LogInButton;
         public Button ConfirmLogInButton;
-        //public Text Username;
-        //public Text Password;
+
         public InputField LogInUsername;
         public InputField LogInPassword;
 
@@ -30,14 +30,12 @@ namespace GoogleARCore.Examples.HelloAR
 
         private bool m_IsQuitting = false;
 
-        //FirebaseApp.
-        //DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
         public void Update()
         {
             _UpdateApplicationLifecycle();
 
             SignUpButton.onClick.AddListener(SignUpHandler);
-            //FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
+            FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
             LogInButton.onClick.AddListener(LogInHandler);
         }
 
@@ -102,8 +100,8 @@ namespace GoogleARCore.Examples.HelloAR
             }
             else
             {
-                User user = new User(Username, Password, email, userid);
-                //FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
+                User user = new User(userid, Username, Password, email);
+                FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
                 //DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
 
                 WriteNewUser(user);
@@ -112,22 +110,47 @@ namespace GoogleARCore.Examples.HelloAR
 
         public void CheckLogIn()
         {
+            bool isLoggedIn;
+            string Username = LogInUsername.text;
+            string Password = LogInPassword.text;
+            string key;
+            //DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
+            //DatabaseReference data = reference
+            FirebaseDatabase database = FirebaseDatabase.GetInstance("https://scholar-ac37c.firebaseio.com");
+            DatabaseReference reference = database.GetReference("Users");
+            Query query = reference.OrderByChild("Username").EqualTo(Username.ToString());
+            //query.ValueChanged()
+            //if (Username.Equals(reference.OrderByChild(Username)) && Password)#
+
+            FirebaseDatabase.DefaultInstance.GetReference("Users").GetValueAsync().ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    //_ShowAndroidToastMessage("Incorrect Log-in information");
+                }
+                else if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result;
+                    if (Password.Equals(snapshot.Child("Password").GetRawJsonValue()))
+                    {
+                        isLoggedIn = true;
+                        key = snapshot.Child("userId").GetRawJsonValue();
+                    }
+                }
+            });
+
 
         }
 
         private void WriteNewUser(User user)
         {
-            //Dictionary<string, Object> dict = new Dictionary<string, Object>();
             FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
             DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference;
-            //string json = JsonUtility.ToJson(user);
 
-            //reference.Child("Users").Push();
             string key = reference.Child("Users").Push().Key;
             user.SetUserId(key);
             string json = JsonUtility.ToJson(user);
             reference.Child("Users").Child(key).SetRawJsonValueAsync(json);
-            //reference.Child("Users").Child(key).SetValueAsync();
 
             _ShowAndroidToastMessage("Sign Up successful! Please log-in with your new details");
             SignUpMenu.SetActive(false);

@@ -40,6 +40,11 @@ namespace GoogleARCore.Examples.HelloAR
             Email = email;
         }
 
+        public string GetUserId()
+        {
+            return (userId);
+        }
+
         public string GetEmail()
         {
             return (Email);
