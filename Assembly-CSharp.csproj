@@ -88,7 +88,6 @@
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\GetSubmittedAnswer.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\HelloARController.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\LoadSceneOnClick.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\QandA.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\QuestionHandler.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\SceneSwitcher.cs" />

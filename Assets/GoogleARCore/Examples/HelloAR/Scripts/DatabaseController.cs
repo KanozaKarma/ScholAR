@@ -122,7 +122,7 @@ namespace GoogleARCore.Examples.HelloAR
             //query.ValueChanged()
             //if (Username.Equals(reference.OrderByChild(Username)) && Password)#
 
-            FirebaseDatabase.DefaultInstance.GetReference("Users").GetValueAsync().ContinueWith(task =>
+            FirebaseDatabase.DefaultInstance.GetReference("Users").OrderByChild(Username).GetValueAsync().ContinueWith(task =>
             {
                 if (task.IsFaulted)
                 {
@@ -138,8 +138,6 @@ namespace GoogleARCore.Examples.HelloAR
                     }
                 }
             });
-
-
         }
 
         private void WriteNewUser(User user)
@@ -191,7 +189,7 @@ namespace GoogleARCore.Examples.HelloAR
             }
             else if (Session.Status.IsError())
             {
-                _ShowAndroidToastMessage("ARCore encountered a problem connecting.  Please start the app again.");
+                _ShowAndroidToastMessage("ARCore encountered a problem connecting. Please start the app again.");
                 m_IsQuitting = true;
                 Invoke("_DoQuit", 0.5f);
             }

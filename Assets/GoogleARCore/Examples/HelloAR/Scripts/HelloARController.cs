@@ -75,6 +75,11 @@ namespace GoogleARCore.Examples.HelloAR
         int score;
 
         public Text NumberOfQuestions;
+
+        public Text achievement;
+        public Text achievementTitle;
+        public GameObject AchievementPanel;
+
         /// <summary>
         /// The rotation in degrees need to apply to model when the Andy model is placed.
         /// </summary>
@@ -104,6 +109,7 @@ namespace GoogleARCore.Examples.HelloAR
 
         private bool startQuestions = false;
 
+        private int answerAchievement = 0;
         /// <summary>
         /// The Unity Update() method.
         /// </summary>
@@ -336,6 +342,12 @@ namespace GoogleARCore.Examples.HelloAR
                 buttonText.text = "Correct Answer!";
                 counter++;
                 questionCounter--;
+                answerAchievement++;
+                if (answerAchievement == 1 || answerAchievement % 5 == 0)
+                {
+                    CheckAchievement(answerAchievement);
+                    AchievementPanel.SetActive(true);
+                }
                 StartCoroutine(CloseCanvas());
             }
             else
@@ -353,8 +365,37 @@ namespace GoogleARCore.Examples.HelloAR
             scoreSystem.text = "Score: " + score;
             MathsQuestions.SetActive(false);
             resume = true;
-            NumberOfQuestions.text = "There are " + questionAnswer.Count + "number of questions left!";
+            NumberOfQuestions.text = "There are " + questionCounter + "number of questions left!";
+            AchievementPanel.SetActive(false);
             Update();
+        }
+        public void CheckAchievement(int noAnswered)
+        {
+            if (noAnswered == 1)
+            {
+                achievementTitle.text = "Just Getting Started";
+                achievement.text = "You've answered your First Question!";
+                //return true;
+            }
+            else if (noAnswered == 5)
+            {
+                achievementTitle.text = "A Long Road";
+                achievement.text = "You've answered 5 questions";
+                //return true;
+            }
+            else if (noAnswered == 10)
+            {
+                achievementTitle.text = "Apprentice";
+                achievement.text = "You've answered 10 questions";
+                //return true;
+            }
+            else if (noAnswered == 15)
+            {
+                achievementTitle.text = "Professionalism At It's Finest";
+                achievement.text = "You've answered 15 questions";
+                //return true;
+            }
+            //return true;
         }
     }
 }
