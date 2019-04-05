@@ -1,7 +1,10 @@
 sceneSetups:
-- path: Assets/GoogleARCore/Examples/HelloAR/Scenes/MainMenu.unity
+- path: Assets/GoogleARCore/Examples/ScholAR/Scenes/MainMenu.unity
   isLoaded: 1
   isActive: 0
-- path: Assets/GoogleARCore/Examples/HelloAR/Scenes/HelloAR.unity
+- path: Assets/GoogleARCore/Examples/ScholAR/Scenes/ScholAR.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/Free Drawing Mode.unity
   isLoaded: 1
   isActive: 1

@@ -61,6 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ButtonPasser.cs" />
+    <Compile Include="Assets\CurvedLine\Scripts\CurvedLine\CurvedLinePoint.cs" />
+    <Compile Include="Assets\CurvedLine\Scripts\CurvedLine\CurvedLineRenderer.cs" />
+    <Compile Include="Assets\CurvedLine\Scripts\CurvedLine\LineSmoother.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\AugmentedFaces\Scripts\ARCoreAugmentedFaceMeshFilter.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\AugmentedFaces\Scripts\ARCoreAugmentedFaceRig.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\AugmentedFaces\Scripts\AugmentedFacesExampleController.cs" />
@@ -83,15 +86,6 @@
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\PointClickHandler.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\TextureReader.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\TextureReaderApi.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\Data.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\DatabaseController.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\GetSubmittedAnswer.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\HelloARController.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\LoadSceneOnClick.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\QandA.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\QuestionHandler.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\SceneSwitcher.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\User.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ObjectManipulation\Scripts\AndyPlacementManipulator.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ObjectManipulation\Scripts\Gestures\DragGesture.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ObjectManipulation\Scripts\Gestures\DragGestureRecognizer.cs" />
@@ -114,6 +108,11 @@
     <Compile Include="Assets\GoogleARCore\Examples\ObjectManipulation\Scripts\Manipulators\SelectionManipulator.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ObjectManipulation\Scripts\Manipulators\TranslationManipulator.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ObjectManipulation\Scripts\ObjectManipulationController.cs" />
+    <Compile Include="Assets\GoogleARCore\Examples\ScholAR\Scripts\DatabaseController.cs" />
+    <Compile Include="Assets\GoogleARCore\Examples\ScholAR\Scripts\HelloARController.cs" />
+    <Compile Include="Assets\GoogleARCore\Examples\ScholAR\Scripts\LoadSceneOnClick.cs" />
+    <Compile Include="Assets\GoogleARCore\Examples\ScholAR\Scripts\QandA.cs" />
+    <Compile Include="Assets\GoogleARCore\Examples\ScholAR\Scripts\User.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewInput.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewManager.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewTrackedPoseDriver.cs" />
@@ -262,6 +261,8 @@
     <Compile Include="Assets\Scripts\ScrollDetailTexture.cs" />
     <Compile Include="Assets\Scripts\ShowSliderValue.cs" />
     <Compile Include="Assets\Scripts\TiltWindow.cs" />
+    <Compile Include="Assets\Scripts\TrailScript.cs" />
+    <Compile Include="Assets\Scripts\TrailScript2.cs" />
     <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\PlaneGrid.shader" />
     <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\MobileDiffuseWithLightEstimation.shader" />
     <None Include="Assets\GoogleARCore\SDK\Materials\ARBackground.shader" />
