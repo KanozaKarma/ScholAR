@@ -6,6 +6,8 @@ namespace GoogleARCore.Examples.ScholAR
     using GoogleARCore;
     using GoogleARCore.Examples.Common;
     using UnityEngine;
+    using Firebase.Database;
+    using Firebase.Unity.Editor;
     using UnityEngine.UI;
 
 #if UNITY_EDITOR
@@ -91,12 +93,16 @@ namespace GoogleARCore.Examples.ScholAR
         private bool startQuestions = false;
 
         private int answerAchievement = 0;
+
+        private string key;
+        bool load = false;
         /// <summary>
         /// The Unity Update() method.
         /// </summary>
         public void Update()
         {
             _UpdateApplicationLifecycle();
+
 
             // Hide snackbar when currently tracking at least one plane.
             Session.GetTrackables<DetectedPlane>(m_AllPlanes);
@@ -358,6 +364,13 @@ namespace GoogleARCore.Examples.ScholAR
             {
                 resume = true;
             }
+        }
+
+        public void LoadUserInfo()
+        {
+            FirebaseDatabase database = FirebaseDatabase.GetInstance("https://scholar-ac37c.firebaseio.com");
+            key = System.IO.File.ReadAllText(@"usersetails.txt");
+            Update();
         }
     }
 }

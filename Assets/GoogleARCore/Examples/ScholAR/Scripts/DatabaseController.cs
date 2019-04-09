@@ -16,6 +16,9 @@ namespace GoogleARCore.Examples.ScholAR
         public Button LogInButton;
         public Button ConfirmLogInButton;
 
+        public Button CancelButton;
+        public Button QuitButton;
+
         public InputField LogInUsername;
         public InputField LogInPassword;
 
@@ -37,6 +40,7 @@ namespace GoogleARCore.Examples.ScholAR
             SignUpButton.onClick.AddListener(SignUpHandler);
             FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://scholar-ac37c.firebaseio.com/");
             LogInButton.onClick.AddListener(LogInHandler);
+            QuitButton.onClick.AddListener(_DoQuit);
         }
 
         public void TakeInfo()
@@ -47,8 +51,10 @@ namespace GoogleARCore.Examples.ScholAR
         public void SignUpHandler()
         {
             MainMenu.SetActive(false);
+            LogInMenu.SetActive(false);
             SignUpMenu.SetActive(true);
 
+            CancelButton.onClick.AddListener(Cancel);
             RegisterButton.onClick.AddListener(CheckSignUp);
 
         }
@@ -57,7 +63,9 @@ namespace GoogleARCore.Examples.ScholAR
         {
             MainMenu.SetActive(false);
             LogInMenu.SetActive(true);
+            SignUpMenu.SetActive(false);
 
+            CancelButton.onClick.AddListener(Cancel);
             ConfirmLogInButton.onClick.AddListener(CheckLogIn);
         }
 
@@ -110,7 +118,7 @@ namespace GoogleARCore.Examples.ScholAR
 
         public void CheckLogIn()
         {
-            bool isLoggedIn;
+            bool isLoggedIn = false;
             string Username = LogInUsername.text;
             string Password = LogInPassword.text;
             string key;
@@ -118,6 +126,7 @@ namespace GoogleARCore.Examples.ScholAR
             //DatabaseReference data = reference
             FirebaseDatabase database = FirebaseDatabase.GetInstance("https://scholar-ac37c.firebaseio.com");
             DatabaseReference reference = database.GetReference("Users");
+            DatabaseReference achievement = database.GetReference("Achievements");
             Query query = reference.OrderByChild("Username").EqualTo(Username.ToString());
             //query.ValueChanged()
             //if (Username.Equals(reference.OrderByChild(Username)) && Password)#
@@ -135,8 +144,14 @@ namespace GoogleARCore.Examples.ScholAR
                     {
                         isLoggedIn = true;
                         key = snapshot.Child("userId").GetRawJsonValue();
+
+                        System.IO.File.WriteAllText(@"userdetails.txt", key);
+                        //string achievementNo = achievement.Child("Achievements").
                     }
+                    LogInMenu.SetActive(false);
+                    MainMenu.SetActive(true);
                 }
+
             });
         }
 
@@ -193,6 +208,13 @@ namespace GoogleARCore.Examples.ScholAR
                 m_IsQuitting = true;
                 Invoke("_DoQuit", 0.5f);
             }
+        }
+
+        private void Cancel()
+        {
+            MainMenu.SetActive(true);
+            LogInMenu.SetActive(false);
+            SignUpMenu.SetActive(false);
         }
 
         /// <summary>

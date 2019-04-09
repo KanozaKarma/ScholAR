@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-namespace Assets.GoogleARCore.Examples.ScholAR.Scripts
+namespace Assets.GoogleARCore.Examples.ScholAR
 {
     class LoadSceneOnClick : MonoBehaviour
     {

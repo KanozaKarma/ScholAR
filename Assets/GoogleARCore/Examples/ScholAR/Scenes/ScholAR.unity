@@ -1034,7 +1034,7 @@ GameObject:
   - component: {fileID: 627916102}
   - component: {fileID: 627916103}
   m_Layer: 0
-  m_Name: Example Controller
+  m_Name: Game Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,9 +1069,9 @@ MonoBehaviour:
   FirstPersonCamera: {fileID: 896679035}
   DetectedPlanePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 3}
-  AndyPlanePrefab: {fileID: 1190091649889860, guid: 242a320930b81430ba610f94f9b760c8,
+  AndyPlanePrefab: {fileID: 2492911977278516352, guid: a08b1543739299d4884f4ba3e2b9ea1a,
     type: 3}
-  AndyPointPrefab: {fileID: 1190091649889860, guid: b27e8d7fe70df464188ea5dcf2af0bb3,
+  AndyPointPrefab: {fileID: 6868230742741310340, guid: 8eb382376d79f1f43b02b1af9883b15b,
     type: 3}
   SearchingForPlaneUI: {fileID: 688001844}
   MathsQuestions: {fileID: 1565475817}
